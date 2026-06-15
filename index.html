@@ -3,419 +3,393 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vote Logo TC USO — Tour 1</title>
+<title>Vote Logo TC USO — Tour 2</title>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
     --green: #2D6A4F; --green-light: #52B788; --green-pale: #D8F3DC;
     --clay: #E07A5F; --clay-dark: #C1440E; --dark: #1A1A2E; --mid: #4A4A6A;
     --light: #F8F9FA; --white: #FFFFFF; --border: #E2E8F0;
-    --selected-bg: #D8F3DC; --selected-border: #2D6A4F;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: 'DM Sans', sans-serif; background: var(--light); color: var(--dark); min-height: 100vh; }
-  header { background: var(--dark); padding: 24px 40px; display: flex; align-items: center; gap: 20px; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 20px rgba(0,0,0,0.3); }
+
+  /* HEADER */
+  header {
+    background: var(--dark); padding: 24px 40px;
+    display: flex; align-items: center; gap: 20px;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+  }
   .header-ball { width: 48px; height: 48px; background: var(--green-light); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; }
   header h1 { font-family: 'Bebas Neue', sans-serif; font-size: 28px; letter-spacing: 2px; color: var(--white); line-height: 1; }
   header p { font-size: 13px; color: #94A3B8; margin-top: 2px; }
-  .header-counter { margin-left: auto; text-align: right; flex-shrink: 0; }
-  .counter-num { font-family: 'Bebas Neue', sans-serif; font-size: 36px; color: var(--green-light); line-height: 1; }
-  .counter-label { font-size: 11px; color: #94A3B8; text-transform: uppercase; letter-spacing: 1px; }
-  #identity-screen { min-height: 100vh; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, var(--dark) 0%, #16213E 100%); }
-  .identity-card { background: var(--white); border-radius: 20px; padding: 48px; max-width: 480px; width: 90%; box-shadow: 0 40px 80px rgba(0,0,0,0.4); text-align: center; }
-  .identity-card .logo-badge { width: 72px; height: 72px; background: var(--green); border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 32px; margin: 0 auto 24px; }
-  .identity-card h2 { font-family: 'Bebas Neue', sans-serif; font-size: 32px; letter-spacing: 2px; color: var(--dark); margin-bottom: 8px; }
-  .identity-card .subtitle { color: var(--mid); font-size: 14px; line-height: 1.6; margin-bottom: 32px; }
-  .identity-card .rule-box { background: var(--green-pale); border-left: 4px solid var(--green); border-radius: 8px; padding: 16px 20px; text-align: left; margin-bottom: 32px; font-size: 14px; color: var(--green); line-height: 1.6; }
-  .identity-card select { width: 100%; padding: 16px 20px; border: 2px solid var(--border); border-radius: 12px; font-family: 'DM Sans', sans-serif; font-size: 16px; color: var(--dark); background: var(--white); appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%234A4A6A' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 16px center; cursor: pointer; transition: border-color 0.2s; margin-bottom: 20px; }
-  .identity-card select:focus { outline: none; border-color: var(--green); }
-  .btn-start { width: 100%; padding: 18px; background: var(--green); color: var(--white); border: none; border-radius: 12px; font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 2px; cursor: pointer; transition: background 0.2s, transform 0.1s; }
-  .btn-start:hover { background: #235A42; transform: translateY(-1px); }
-  .btn-start:disabled { background: #CBD5E1; cursor: not-allowed; transform: none; }
-  #vote-screen { display: none; }
-  .toolbar { background: var(--white); border-bottom: 1px solid var(--border); padding: 12px 40px; display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
-  .voter-tag { background: var(--green-pale); color: var(--green); font-weight: 600; font-size: 13px; padding: 6px 14px; border-radius: 20px; }
-  .toolbar-info { font-size: 13px; color: var(--mid); }
-  .toolbar-info strong { color: var(--clay-dark); }
-  .grid-container { padding: 32px 40px 100px; max-width: 1400px; margin: 0 auto; }
-  .section-title { font-family: 'Bebas Neue', sans-serif; font-size: 13px; letter-spacing: 3px; color: var(--mid); text-transform: uppercase; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid var(--border); }
-  .logo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 16px; }
-  .logo-card { background: var(--white); border: 2px solid var(--border); border-radius: 14px; overflow: hidden; cursor: pointer; transition: all 0.2s; position: relative; user-select: none; }
-  .logo-card:hover { border-color: var(--green-light); transform: translateY(-3px); box-shadow: 0 8px 24px rgba(45,106,79,0.15); }
-  .logo-card.selected { border-color: var(--selected-border); background: var(--selected-bg); box-shadow: 0 0 0 3px rgba(45,106,79,0.2); }
-  .logo-card.selected .check-badge { opacity: 1; transform: scale(1); }
-  .logo-card.disabled-card { opacity: 0.4; cursor: not-allowed; pointer-events: none; }
-  .logo-card.selected.disabled-card { pointer-events: auto; opacity: 1; }
-  .check-badge { position: absolute; top: 8px; right: 8px; width: 28px; height: 28px; background: var(--green); border-radius: 50%; display: flex; align-items: center; justify-content: center; opacity: 0; transform: scale(0.5); transition: all 0.2s; z-index: 2; }
-  .logo-num-badge { position: absolute; top: 8px; left: 8px; background: rgba(26,26,46,0.7); color: white; font-size: 11px; font-weight: 600; padding: 3px 7px; border-radius: 8px; z-index: 2; }
-  .logo-img-wrap { width: 100%; padding-top: 75%; position: relative; background: #F1F5F9; }
-  .logo-img-wrap img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: contain; padding: 12px; }
-  .logo-img-wrap .img-placeholder { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 11px; color: #94A3B8; text-align: center; padding: 8px; }
-  .logo-label { padding: 10px 12px; font-size: 12px; font-weight: 600; color: var(--mid); border-top: 1px solid var(--border); text-align: center; }
-  .logo-card.selected .logo-label { color: var(--green); border-top-color: rgba(45,106,79,0.2); }
-  .bottom-bar { position: fixed; bottom: 0; left: 0; right: 0; background: var(--dark); color: var(--white); padding: 16px 40px; display: flex; align-items: center; gap: 20px; z-index: 100; box-shadow: 0 -4px 20px rgba(0,0,0,0.2); }
-  .selection-chips { display: flex; gap: 8px; flex-wrap: wrap; flex: 1; overflow: hidden; max-height: 36px; }
-  .chip { background: var(--green); color: white; font-size: 12px; font-weight: 600; padding: 4px 10px; border-radius: 12px; white-space: nowrap; animation: chipIn 0.2s ease; }
-  @keyframes chipIn { from { transform: scale(0.7); opacity: 0; } to { transform: scale(1); opacity: 1; } }
-  .btn-submit-bottom { flex-shrink: 0; padding: 12px 32px; background: var(--clay); color: var(--white); border: none; border-radius: 10px; font-family: 'Bebas Neue', sans-serif; font-size: 20px; letter-spacing: 1px; cursor: pointer; transition: background 0.2s; }
-  .btn-submit-bottom:hover { background: var(--clay-dark); }
-  .btn-submit-bottom:disabled { background: #475569; cursor: not-allowed; }
-  .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 200; align-items: center; justify-content: center; }
-  .modal-overlay.active { display: flex; }
-  .modal { background: var(--white); border-radius: 20px; padding: 40px; max-width: 500px; width: 90%; box-shadow: 0 40px 80px rgba(0,0,0,0.3); }
-  .modal h3 { font-family: 'Bebas Neue', sans-serif; font-size: 26px; letter-spacing: 1px; margin-bottom: 8px; }
-  .modal p { color: var(--mid); font-size: 14px; line-height: 1.6; margin-bottom: 20px; }
-  .modal-list { background: var(--light); border-radius: 10px; padding: 16px; margin-bottom: 24px; max-height: 200px; overflow-y: auto; display: flex; flex-wrap: wrap; gap: 8px; }
-  .modal-actions { display: flex; gap: 12px; }
-  .btn-cancel { flex: 1; padding: 14px; border: 2px solid var(--border); border-radius: 10px; background: var(--white); font-family: 'DM Sans', sans-serif; font-size: 15px; cursor: pointer; transition: border-color 0.2s; }
-  .btn-cancel:hover { border-color: var(--mid); }
-  .btn-confirm { flex: 1; padding: 14px; background: var(--clay); color: var(--white); border: none; border-radius: 10px; font-family: 'Bebas Neue', sans-serif; font-size: 20px; letter-spacing: 1px; cursor: pointer; transition: background 0.2s; }
-  .btn-confirm:hover { background: var(--clay-dark); }
-  #done-screen { display: none; min-height: 100vh; align-items: center; justify-content: center; background: linear-gradient(135deg, var(--dark) 0%, #16213E 100%); }
-  .done-card { background: var(--white); border-radius: 20px; padding: 48px; max-width: 500px; width: 90%; text-align: center; box-shadow: 0 40px 80px rgba(0,0,0,0.4); }
-  .done-icon { font-size: 56px; margin-bottom: 20px; }
-  .done-card h2 { font-family: 'Bebas Neue', sans-serif; font-size: 32px; letter-spacing: 2px; margin-bottom: 12px; }
-  .done-card p { color: var(--mid); font-size: 14px; line-height: 1.7; }
+
+  /* MAIN */
+  .main { max-width: 1100px; margin: 0 auto; padding: 40px 24px; }
+
+  .intro {
+    background: var(--green-pale); border-left: 4px solid var(--green);
+    border-radius: 10px; padding: 18px 24px; margin-bottom: 36px;
+    font-size: 14px; color: var(--green); line-height: 1.7;
+  }
+  .intro strong { font-size: 15px; }
+
+  /* ALREADY VOTED */
+  #already-voted {
+    display: none;
+    background: #FEF3C7; border-left: 4px solid #F59E0B;
+    border-radius: 10px; padding: 18px 24px; margin-bottom: 36px;
+    font-size: 14px; color: #92400E; line-height: 1.7;
+  }
+
+  /* LOGO GRID */
+  .logo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    margin-bottom: 48px;
+  }
+
+  .logo-card {
+    background: var(--white); border: 3px solid var(--border);
+    border-radius: 16px; overflow: hidden; cursor: pointer;
+    transition: all 0.2s; position: relative;
+  }
+  .logo-card:hover:not(.voted):not(.disabled) {
+    border-color: var(--green-light);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 28px rgba(45,106,79,0.15);
+  }
+  .logo-card.selected {
+    border-color: var(--green);
+    box-shadow: 0 0 0 4px rgba(45,106,79,0.2);
+  }
+  .logo-card.voted { cursor: default; }
+  .logo-card.disabled { cursor: default; opacity: 0.6; }
+
+  .logo-img-wrap { width: 100%; padding-top: 80%; position: relative; background: #F1F5F9; }
+  .logo-img-wrap img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: contain; padding: 16px; }
+
+  .logo-footer {
+    padding: 12px 16px;
+    border-top: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 8px;
+  }
+  .logo-name { font-size: 12px; font-weight: 600; color: var(--mid); }
+  .logo-card.selected .logo-name { color: var(--green); }
+
+  /* VOTE BAR */
+  .vote-bar-wrap { flex: 1; }
+  .vote-bar-bg { background: var(--border); border-radius: 4px; height: 6px; overflow: hidden; }
+  .vote-bar-fill { height: 100%; background: var(--green-light); border-radius: 4px; transition: width 0.5s ease; width: 0%; }
+  .vote-count { font-size: 11px; font-weight: 700; color: var(--green); min-width: 20px; text-align: right; }
+
+  /* WINNER BADGE */
+  .winner-badge {
+    display: none;
+    position: absolute; top: 10px; right: 10px;
+    background: #F59E0B; color: white;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 13px; letter-spacing: 1px;
+    padding: 4px 10px; border-radius: 20px;
+    z-index: 2;
+  }
+
+  /* VOTE BUTTON */
+  .btn-vote {
+    display: block; width: 100%;
+    padding: 14px;
+    background: var(--clay); color: var(--white);
+    border: none; border-radius: 0 0 13px 13px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 18px; letter-spacing: 1px;
+    cursor: pointer; transition: background 0.2s;
+  }
+  .btn-vote:hover { background: var(--clay-dark); }
+  .btn-vote:disabled { background: #CBD5E1; cursor: not-allowed; }
+  .btn-vote.voted-btn { background: var(--green); cursor: default; }
+
+  /* RESULTS SECTION */
+  .results-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px; letter-spacing: 2px;
+    color: var(--dark); margin-bottom: 20px;
+    padding-bottom: 10px; border-bottom: 2px solid var(--border);
+  }
+
+  .result-row {
+    display: flex; align-items: center; gap: 16px;
+    background: var(--white); border-radius: 12px;
+    padding: 14px 20px; margin-bottom: 10px;
+    border: 2px solid var(--border);
+    transition: border-color 0.3s;
+  }
+  .result-row.leader { border-color: #F59E0B; background: #FFFBEB; }
+  .result-rank { font-family: 'Bebas Neue', sans-serif; font-size: 22px; color: var(--mid); min-width: 32px; }
+  .result-row.leader .result-rank { color: #F59E0B; }
+  .result-name { font-weight: 600; font-size: 14px; min-width: 80px; }
+  .result-bar-wrap { flex: 1; }
+  .result-bar-bg { background: var(--border); border-radius: 6px; height: 10px; overflow: hidden; }
+  .result-bar-fill { height: 100%; background: var(--green-light); border-radius: 6px; transition: width 0.6s ease; }
+  .result-row.leader .result-bar-fill { background: #F59E0B; }
+  .result-votes { font-family: 'Bebas Neue', sans-serif; font-size: 20px; color: var(--green); min-width: 40px; text-align: right; }
+  .result-row.leader .result-votes { color: #F59E0B; }
+  .result-pct { font-size: 12px; color: var(--mid); min-width: 36px; text-align: right; }
+
+  .total-votes {
+    text-align: center; margin-top: 24px;
+    font-size: 13px; color: var(--mid);
+  }
+  .total-votes strong { color: var(--dark); font-size: 15px; }
+
+  /* LOADING */
+  .loading { text-align: center; padding: 40px; color: var(--mid); font-size: 14px; }
+
   @media (max-width: 600px) {
     header { padding: 16px 20px; } header h1 { font-size: 20px; }
-    .grid-container { padding: 20px 20px 100px; }
-    .logo-grid { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 12px; }
-    .toolbar { padding: 10px 20px; } .bottom-bar { padding: 12px 20px; }
-    .identity-card { padding: 32px 24px; }
+    .main { padding: 24px 16px; }
+    .logo-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
   }
 </style>
 </head>
 <body>
 
-<div id="identity-screen">
-  <div class="identity-card">
-    <div class="logo-badge">🎾</div>
-    <h2>Vote Logo TC USO</h2>
-    <p class="subtitle">Concours de logo du club — Tour 1<br>Sélectionnez vos 20 logos préférés parmi les 112 propositions.</p>
-    <div class="rule-box">
-      📋 <strong>Règle :</strong> Vous devez choisir <strong>exactement 20 logos</strong>. Les logos cités au moins 2 fois passeront au tour 2.
-    </div>
-    <select id="voter-select">
-      <option value="">— Sélectionnez votre nom —</option>
-      <option>Aurélie</option>
-      <option>Claire</option>
-      <option>Elisabeth</option>
-      <option>Guillaume</option>
-      <option>Jean-Marc</option>
-      <option>Jérémie</option>
-      <option>Joël</option>
-      <option>Laura</option>
-      <option>Philippe</option>
-      <option>Sacha</option>
-      <option>Sandrine</option>
-      <option>Yohan</option>
-    </select>
-    <button class="btn-start" id="btn-start" disabled onclick="startVote()">Commencer le vote →</button>
+<header>
+  <div class="header-ball">🎾</div>
+  <div>
+    <h1>Vote Logo TC USO — Tour 2</h1>
+    <p>Choisissez votre logo préféré parmi les 10 finalistes</p>
   </div>
-</div>
+</header>
 
-<div id="vote-screen">
-  <header>
-    <div class="header-ball">🎾</div>
-    <div>
-      <h1>Vote Logo TC USO</h1>
-      <p>Tour 1 — Choisissez vos 20 logos préférés</p>
-    </div>
-    <div class="header-counter">
-      <div class="counter-num" id="counter">0</div>
-      <div class="counter-label">/ 20 sélectionnés</div>
-    </div>
-  </header>
-  <div class="toolbar">
-    <span class="voter-tag" id="voter-display"></span>
-    <span class="toolbar-info">Cliquez sur un logo pour le sélectionner · <strong id="remaining-text">20 restants</strong></span>
-  </div>
-  <div class="grid-container">
-    <div class="section-title">112 logos en compétition</div>
-    <div class="logo-grid" id="logo-grid"></div>
-  </div>
-  <div class="bottom-bar">
-    <div class="selection-chips" id="selection-chips"></div>
-    <button class="btn-submit-bottom" id="btn-submit-bottom" disabled onclick="openModal()">Envoyer mon vote →</button>
-  </div>
-</div>
+<div class="main">
 
-<div class="modal-overlay" id="modal">
-  <div class="modal">
-    <h3>✅ Confirmer votre vote</h3>
-    <p>Voici vos <strong>20 logos sélectionnés</strong>. Une fois envoyé, votre vote ne pourra pas être modifié.</p>
-    <div class="modal-list" id="modal-list"></div>
-    <div class="modal-actions">
-      <button class="btn-cancel" onclick="closeModal()">← Modifier</button>
-      <button class="btn-confirm" onclick="submitVote()">Envoyer ✉️</button>
-    </div>
+  <div class="intro" id="intro-box">
+    🗳️ <strong>Comment voter ?</strong><br>
+    Cliquez sur le bouton <strong>"Voter pour ce logo"</strong> sous votre logo préféré.<br>
+    Un seul vote par navigateur. Les résultats sont mis à jour en temps réel.
   </div>
-</div>
 
-<div id="done-screen">
-  <div class="done-card">
-    <div class="done-icon">🎉</div>
-    <h2>Vote envoyé !</h2>
-    <p>Merci <strong id="done-name"></strong> !<br><br>Votre client mail vient de s'ouvrir avec votre sélection de 20 logos.<br>Vérifiez que l'email a bien été envoyé à <strong>contact@tcusormesson.fr</strong>.<br><br>Les résultats du Tour 1 seront communiqués prochainement.</p>
+  <div id="already-voted">
+    ✅ <strong>Vous avez déjà voté !</strong><br>
+    Votre vote a bien été enregistré. Les résultats ci-dessous sont mis à jour en temps réel.
   </div>
+
+  <div class="logo-grid" id="logo-grid">
+    <div class="loading">Chargement des logos...</div>
+  </div>
+
+  <div class="results-title">📊 Résultats en temps réel</div>
+  <div id="results-list">
+    <div class="loading">Chargement des résultats...</div>
+  </div>
+  <div class="total-votes" id="total-votes"></div>
+
 </div>
 
 <script>
-const MAX_VOTES = 20;
-const EMAIL_TO = "contact@tcusormesson.fr";
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzCt2dF12QYABNBImyEWcoTjk1QDn8JTDQgxS5zqVErFs1SrmaPIh0FRgY9UZVOBa3J/exec";
+const STORAGE_KEY = "tcuso_vote_tour2";
 
-// 112 logos — numérotés séquentiellement 1 à 112
-// PP(1) et PP(2) supprimés, image6/7/8 supprimés, GP(5) et GP(6) ajoutés
 const LOGOS = [
-  { num: 1,   file: "AP (1)" },
-  { num: 2,   file: "AP (2)" },
-  { num: 3,   file: "AP (3)" },
-  { num: 4,   file: "AP (4)" },
-  { num: 5,   file: "AP (5)" },
-  { num: 6,   file: "AP (6)" },
-  { num: 7,   file: "AP (7)" },
-  { num: 8,   file: "AR (1)" },
-  { num: 9,   file: "AR (2)" },
-  { num: 10,  file: "AR (3)" },
-  { num: 11,  file: "AR (4)" },
-  { num: 12,  file: "BPGP" },
-  { num: 13,  file: "BPSP" },
-  { num: 14,  file: "CM (1)" },
-  { num: 15,  file: "CM (2)" },
-  { num: 16,  file: "CM (3)" },
-  { num: 17,  file: "CM (4)" },
-  { num: 18,  file: "CM (5)" },
-  { num: 19,  file: "D (1)" },
-  { num: 20,  file: "D (2)" },
-  { num: 21,  file: "D (3)" },
-  { num: 22,  file: "D (4)" },
-  { num: 23,  file: "D (5)" },
-  { num: 24,  file: "D (6)" },
-  { num: 25,  file: "D (7)" },
-  { num: 26,  file: "D (8)" },
-  { num: 27,  file: "D (9)" },
-  { num: 28,  file: "D (10)" },
-  { num: 29,  file: "DC" },
-  { num: 30,  file: "GP (1)" },
-  { num: 31,  file: "GP (2)" },
-  { num: 32,  file: "GP (3)" },
-  { num: 33,  file: "GP (4)" },
-  { num: 34,  file: "GP (5)" },
-  { num: 35,  file: "GP (6)" },
-  { num: 36,  file: "JPP (1)" },
-  { num: 37,  file: "JPP (2)" },
-  { num: 38,  file: "KB" },
-  { num: 39,  file: "LB (1)" },
-  { num: 40,  file: "LB (2)" },
-  { num: 41,  file: "LCL (1)" },
-  { num: 42,  file: "LCL (2)" },
-  { num: 43,  file: "LCL (3)" },
-  { num: 44,  file: "LD (1)" },
-  { num: 45,  file: "LD (2)" },
-  { num: 46,  file: "LD (3)" },
-  { num: 47,  file: "LR (1)" },
-  { num: 48,  file: "LR (2)" },
-  { num: 49,  file: "LR (3)" },
-  { num: 50,  file: "LR (4)" },
-  { num: 51,  file: "MDC" },
-  { num: 52,  file: "MDC 2" },
-  { num: 53,  file: "OA (1)" },
-  { num: 54,  file: "OA (2)" },
-  { num: 55,  file: "OA (3)" },
-  { num: 56,  file: "PP (3)" },
-  { num: 57,  file: "PP (4)" },
-  { num: 58,  file: "PP (5)" },
-  { num: 59,  file: "PP (6)" },
-  { num: 60,  file: "PP (7)" },
-  { num: 61,  file: "PP (8)" },
-  { num: 62,  file: "PP (9)" },
-  { num: 63,  file: "PP (10)" },
-  { num: 64,  file: "PP (11)" },
-  { num: 65,  file: "PP (12)" },
-  { num: 66,  file: "PP (13)" },
-  { num: 67,  file: "PP (14)" },
-  { num: 68,  file: "PP (15)" },
-  { num: 69,  file: "PP (16)" },
-  { num: 70,  file: "PP (17)" },
-  { num: 71,  file: "PP (18)" },
-  { num: 72,  file: "PP (19)" },
-  { num: 73,  file: "PP (20)" },
-  { num: 74,  file: "PP (21)" },
-  { num: 75,  file: "PP (22)" },
-  { num: 76,  file: "PP (23)" },
-  { num: 77,  file: "PP (24)" },
-  { num: 78,  file: "PP (25)" },
-  { num: 79,  file: "PP (26)" },
-  { num: 80,  file: "PP (27)" },
-  { num: 81,  file: "PP (28)" },
-  { num: 82,  file: "PP (29)" },
-  { num: 83,  file: "PP (30)" },
-  { num: 84,  file: "PP (31)" },
-  { num: 85,  file: "PP (32)" },
-  { num: 86,  file: "PP (33)" },
-  { num: 87,  file: "PP (34)" },
-  { num: 88,  file: "PP (35)" },
-  { num: 89,  file: "PP (36)" },
-  { num: 90,  file: "PP (37)" },
-  { num: 91,  file: "PP (38)" },
-  { num: 92,  file: "PP (39)" },
-  { num: 93,  file: "PP (40)" },
-  { num: 94,  file: "PP (41)" },
-  { num: 95,  file: "PP (42)" },
-  { num: 96,  file: "PP (43)" },
-  { num: 97,  file: "PP (44)" },
-  { num: 98,  file: "PP (45)" },
-  { num: 99,  file: "PP (46)" },
-  { num: 100, file: "VC (1)" },
-  { num: 101, file: "VC (2)" },
-  { num: 102, file: "VC (3)" },
-  { num: 103, file: "VC (4)" },
-  { num: 104, file: "VC (5)" },
-  { num: 105, file: "ZB (1)" },
-  { num: 106, file: "ZB (2)" },
-  { num: 107, file: "image0" },
-  { num: 108, file: "image1" },
-  { num: 109, file: "image2" },
-  { num: 110, file: "image3" },
-  { num: 111, file: "image4" },
-  { num: 112, file: "image5" }
+  { id: "AR (2)",  file: "AR (2)",  label: "AR 2" },
+  { id: "CM (2)",  file: "CM (2)",  label: "CM 2" },
+  { id: "D (2)",   file: "D (2)",   label: "D 2" },
+  { id: "GP (3)",  file: "GP (3)",  label: "GP 3" },
+  { id: "LCL (2)", file: "LCL (2)", label: "LCL 2" },
+  { id: "PP (29)", file: "PP (29)", label: "PP 29" },
+  { id: "PP (37)", file: "PP (37)", label: "PP 37" },
+  { id: "PP (43)", file: "PP (43)", label: "PP 43" },
+  { id: "PP (5)",  file: "PP (5)",  label: "PP 5" },
+  { id: "PP (7)",  file: "PP (7)",  label: "PP 7" }
 ];
 
-let selected = new Set();
-let voterName = "";
+let votedFor = localStorage.getItem(STORAGE_KEY) || null;
+let currentVotes = {};
+let refreshInterval = null;
 
-document.getElementById("voter-select").addEventListener("change", function() {
-  document.getElementById("btn-start").disabled = !this.value;
-});
-
-function startVote() {
-  voterName = document.getElementById("voter-select").value;
-  if (!voterName) return;
-  document.getElementById("identity-screen").style.display = "none";
-  document.getElementById("vote-screen").style.display = "block";
-  document.getElementById("voter-display").textContent = "👤 " + voterName;
-  buildGrid();
-}
-
+// ── BUILD GRID ──
 function buildGrid() {
   const grid = document.getElementById("logo-grid");
   grid.innerHTML = "";
+
+  if (votedFor) {
+    document.getElementById("already-voted").style.display = "block";
+    document.getElementById("intro-box").style.display = "none";
+  }
+
   LOGOS.forEach(logo => {
+    const isMyVote = votedFor === logo.id;
+    const hasVoted = votedFor !== null;
+
     const card = document.createElement("div");
-    card.className = "logo-card";
-    card.dataset.num = logo.num;
-    card.onclick = () => toggleLogo(logo.num);
+    card.className = "logo-card" + (isMyVote ? " selected voted" : hasVoted ? " voted" : "");
+    card.id = "card-" + logo.id;
 
-    const numBadge = document.createElement("div");
-    numBadge.className = "logo-num-badge";
-    numBadge.textContent = "#" + logo.num;
+    // Winner badge (hidden until results loaded)
+    const winnerBadge = document.createElement("div");
+    winnerBadge.className = "winner-badge";
+    winnerBadge.id = "winner-" + logo.id;
+    winnerBadge.textContent = "🏆 EN TÊTE";
 
+    // Image
     const imgWrap = document.createElement("div");
     imgWrap.className = "logo-img-wrap";
-
     const img = document.createElement("img");
     img.src = `logos/${logo.file}.png`;
-    img.alt = "Logo " + logo.num;
+    img.alt = logo.label;
     img.onerror = function() {
-      if (!this.triedJpg) {
-        this.triedJpg = true;
-        this.src = `logos/${logo.file}.jpg`;
-        this.onerror = function() {
-          if (!this.triedJpeg) {
-            this.triedJpeg = true;
-            this.src = `logos/${logo.file}.jpeg`;
-            this.onerror = function() {
-              this.style.display = "none";
-              const ph = document.createElement("div");
-              ph.className = "img-placeholder";
-              ph.textContent = logo.file;
-              imgWrap.appendChild(ph);
-            };
-          }
-        };
-      }
+      if (!this.triedJpg) { this.triedJpg = true; this.src = `logos/${logo.file}.jpg`; }
+      else if (!this.triedJpeg) { this.triedJpeg = true; this.src = `logos/${logo.file}.jpeg`; }
     };
     imgWrap.appendChild(img);
 
-    const badge = document.createElement("div");
-    badge.className = "check-badge";
-    badge.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>`;
+    // Footer with name + mini bar
+    const footer = document.createElement("div");
+    footer.className = "logo-footer";
+    const nameEl = document.createElement("span");
+    nameEl.className = "logo-name";
+    nameEl.textContent = isMyVote ? "✅ Mon vote" : logo.label;
 
-    const label = document.createElement("div");
-    label.className = "logo-label";
-    label.textContent = "Logo n°" + logo.num;
+    const barWrap = document.createElement("div");
+    barWrap.className = "vote-bar-wrap";
+    barWrap.innerHTML = `<div class="vote-bar-bg"><div class="vote-bar-fill" id="bar-${logo.id}"></div></div>`;
 
-    card.appendChild(numBadge);
+    const countEl = document.createElement("span");
+    countEl.className = "vote-count";
+    countEl.id = "count-" + logo.id;
+    countEl.textContent = "";
+
+    footer.appendChild(nameEl);
+    footer.appendChild(barWrap);
+    footer.appendChild(countEl);
+
+    // Button
+    const btn = document.createElement("button");
+    btn.className = "btn-vote" + (isMyVote ? " voted-btn" : "");
+    btn.id = "btn-" + logo.id;
+    btn.textContent = isMyVote ? "✅ Votre vote" : "Voter pour ce logo";
+    btn.disabled = hasVoted;
+    if (!hasVoted) btn.onclick = () => castVote(logo.id);
+
+    card.appendChild(winnerBadge);
     card.appendChild(imgWrap);
-    card.appendChild(badge);
-    card.appendChild(label);
+    card.appendChild(footer);
+    card.appendChild(btn);
     grid.appendChild(card);
   });
 }
 
-function toggleLogo(num) {
-  if (selected.has(num)) { selected.delete(num); }
-  else { if (selected.size >= MAX_VOTES) return; selected.add(num); }
-  updateUI();
+// ── VOTE ──
+async function castVote(logoId) {
+  // Disable all buttons immediately
+  LOGOS.forEach(l => {
+    const btn = document.getElementById("btn-" + l.id);
+    if (btn) btn.disabled = true;
+  });
+
+  try {
+    await fetch(SCRIPT_URL, {
+      method: "POST",
+      mode: "no-cors",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ logo: logoId, ip: "browser" })
+    });
+
+    // Save locally
+    localStorage.setItem(STORAGE_KEY, logoId);
+    votedFor = logoId;
+
+    // Update UI
+    document.getElementById("already-voted").style.display = "block";
+    document.getElementById("intro-box").style.display = "none";
+
+    const card = document.getElementById("card-" + logoId);
+    if (card) card.classList.add("selected", "voted");
+
+    const btn = document.getElementById("btn-" + logoId);
+    if (btn) { btn.textContent = "✅ Votre vote"; btn.classList.add("voted-btn"); }
+
+    // Refresh results
+    setTimeout(fetchResults, 1500);
+
+  } catch(err) {
+    // Even on no-cors, the vote is sent — just refresh
+    localStorage.setItem(STORAGE_KEY, logoId);
+    votedFor = logoId;
+    setTimeout(fetchResults, 1500);
+  }
 }
 
-function updateUI() {
-  const count = selected.size;
-  document.getElementById("counter").textContent = count;
-  const remaining = MAX_VOTES - count;
-  document.getElementById("remaining-text").textContent =
-    remaining === 0 ? "✅ Sélection complète !" : `${remaining} restant${remaining > 1 ? "s" : ""}`;
-  document.querySelectorAll(".logo-card").forEach(card => {
-    const num = parseInt(card.dataset.num);
-    const isSel = selected.has(num);
-    card.classList.toggle("selected", isSel);
-    if (count >= MAX_VOTES && !isSel) card.classList.add("disabled-card");
-    else card.classList.remove("disabled-card");
-  });
-  const chips = document.getElementById("selection-chips");
-  chips.innerHTML = "";
-  [...selected].sort((a,b) => a-b).forEach(num => {
-    const chip = document.createElement("span");
-    chip.className = "chip";
-    chip.textContent = "n°" + num;
-    chips.appendChild(chip);
-  });
-  document.getElementById("btn-submit-bottom").disabled = count !== MAX_VOTES;
+// ── FETCH RESULTS ──
+async function fetchResults() {
+  try {
+    const res = await fetch(SCRIPT_URL + "?t=" + Date.now());
+    const votes = await res.json();
+    currentVotes = votes;
+    renderResults(votes);
+    updateMiniars(votes);
+  } catch(e) {
+    // Silently fail, retry next interval
+  }
 }
 
-function openModal() {
-  if (selected.size !== MAX_VOTES) return;
-  const list = document.getElementById("modal-list");
+function renderResults(votes) {
+  const total = Object.values(votes).reduce((a, b) => a + b, 0);
+  const sorted = LOGOS.map(l => ({ label: l.label, id: l.id, count: votes[l.id] || 0 }))
+    .sort((a, b) => b.count - a.count);
+
+  const maxVotes = sorted[0]?.count || 1;
+  const list = document.getElementById("results-list");
   list.innerHTML = "";
-  [...selected].sort((a,b) => a-b).forEach(num => {
-    const chip = document.createElement("span");
-    chip.className = "chip";
-    chip.textContent = "n°" + num;
-    list.appendChild(chip);
+
+  sorted.forEach((item, i) => {
+    const pct = total > 0 ? Math.round(item.count / total * 100) : 0;
+    const isLeader = item.count > 0 && item.count === maxVotes;
+
+    const row = document.createElement("div");
+    row.className = "result-row" + (isLeader ? " leader" : "");
+
+    row.innerHTML = `
+      <div class="result-rank">${i + 1}</div>
+      <div class="result-name">${item.label}</div>
+      <div class="result-bar-wrap">
+        <div class="result-bar-bg">
+          <div class="result-bar-fill" style="width:${maxVotes > 0 ? item.count/maxVotes*100 : 0}%"></div>
+        </div>
+      </div>
+      <div class="result-votes">${item.count}</div>
+      <div class="result-pct">${pct}%</div>
+    `;
+    list.appendChild(row);
+
+    // Show winner badge on card
+    const badge = document.getElementById("winner-" + item.id);
+    if (badge) badge.style.display = isLeader && item.count > 0 ? "block" : "none";
   });
-  document.getElementById("modal").classList.add("active");
+
+  document.getElementById("total-votes").innerHTML =
+    total > 0 ? `<strong>${total}</strong> vote${total > 1 ? "s" : ""} enregistré${total > 1 ? "s" : ""}` : "";
 }
 
-function closeModal() { document.getElementById("modal").classList.remove("active"); }
-
-function submitVote() {
-  closeModal();
-  const sorted = [...selected].sort((a,b) => a-b);
-  const dateStr = new Date().toLocaleDateString("fr-FR", {day:"2-digit", month:"long", year:"numeric"});
-  const subject = encodeURIComponent(`[Vote Logo TC USO - Tour 1] ${voterName}`);
-  const body = encodeURIComponent(
-    `Bonjour,\n\nVoici le vote de ${voterName} pour le Tour 1 du concours de logo TC USO.\nDate : ${dateStr}\n\n--- MES 20 LOGOS SÉLECTIONNÉS ---\n\n` +
-    sorted.map((n, i) => `${String(i+1).padStart(2,"0")}. Logo n°${n}`).join("\n") +
-    `\n\n--- FIN DU VOTE ---\n\nCe vote a été généré automatiquement depuis l'application de vote TC USO.`
-  );
-  window.location.href = `mailto:${EMAIL_TO}?subject=${subject}&body=${body}`;
-  setTimeout(() => {
-    document.getElementById("vote-screen").style.display = "none";
-    const done = document.getElementById("done-screen");
-    done.style.display = "flex";
-    document.getElementById("done-name").textContent = voterName;
-  }, 1000);
+function updateMiniars(votes) {
+  const total = Object.values(votes).reduce((a, b) => a + b, 0);
+  const max = Math.max(...Object.values(votes), 1);
+  LOGOS.forEach(l => {
+    const count = votes[l.id] || 0;
+    const bar = document.getElementById("bar-" + l.id);
+    const countEl = document.getElementById("count-" + l.id);
+    if (bar) bar.style.width = (count / max * 100) + "%";
+    if (countEl) countEl.textContent = count > 0 ? count : "";
+  });
 }
+
+// ── INIT ──
+buildGrid();
+fetchResults();
+// Refresh every 15 seconds
+refreshInterval = setInterval(fetchResults, 15000);
 </script>
 </body>
 </html>
