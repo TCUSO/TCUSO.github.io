@@ -237,11 +237,11 @@ function buildGrid() {
     const imgWrap = document.createElement("div");
     imgWrap.className = "logo-img-wrap";
     const img = document.createElement("img");
-    img.src = `logos/${logo.file}.png`;
+    img.src = `Logos/${logo.file}.png`;
     img.alt = logo.label;
     img.onerror = function() {
-      if (!this.triedJpg) { this.triedJpg = true; this.src = `logos/${logo.file}.jpg`; }
-      else if (!this.triedJpeg) { this.triedJpeg = true; this.src = `logos/${logo.file}.jpeg`; }
+      if (!this.triedJpg) { this.triedJpg = true; this.src = `Logos/${logo.file}.jpg`; }
+      else if (!this.triedJpeg) { this.triedJpeg = true; this.src = `Logos/${logo.file}.jpeg`; }
     };
     imgWrap.appendChild(img);
 
